@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-Metric REIT Portfolio Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #121212; color: #e0e0e0; padding: 30px; margin: 0; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: #ffffff; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 30px; }
+        
+        .reit-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+        .reit-card { background-color: #1e1e1e; border-radius: 12px; border: 1px solid #333; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .reit-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 20px; }
+        .reit-title h2 { margin: 0; color: #ffffff; font-size: 1.4rem; }
+        .reit-title span { color: #888; font-size: 0.9rem; }
+        
+        /* 5-Column Metrics Row for Core Stats */
+        .metrics-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .metric-box { background-color: #262626; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #3c3c3c; }
+        .metric-box h4 { margin: 0 0 8px 0; color: #aaa; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .metric-box p { margin: 0; font-size: 1.3rem; font-weight: bold; }
+        
+        /* Custom sections for Long Text Metrics (6 & 7) */
+        .text-section { margin-top: 15px; padding: 15px 20px; border-radius: 6px; }
+        .outlook-box { background-color: #252d3a; border-left: 5px solid #33b5e5; }
+        .outlook-box h4 { margin: 0 0 5px 0; color: #33b5e5; font-size: 0.9rem; text-transform: uppercase; }
+        
+        .rec-box { background-color: #1b2e2b; border-left: 5px solid #00ffcc; }
+        .rec-box h4 { margin: 0 0 5px 0; color: #00ffcc; font-size: 0.9rem; text-transform: uppercase; }
+        
+        .text-section p { margin: 0; font-size: 0.95rem; line-height: 1.5; color: #d0d0d0; }
+        
+        /* Status Colors */
+        .pass { color: #00ffcc; }
+        .warning { color: #ffaa00; }
+        .danger { color: #ff5555; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🏢 Private 7-Metric REIT Dashboard</h1>
+    
+    <div class="reit-grid">
+        
+        <!-- Example REIT Card -->
+        <div class="reit-card">
+            <div class="reit-header">
+                <div class="reit-title">
+                    <h2>Mapletree Logistics Trust</h2>
+                    <span>Ticker: M44U | Sector: Global Logistics</span>
+                </div>
+            </div>
+            
+            <!-- Quantitative Rows (1-5) -->
+            <div class="metrics-row">
+                <div class="metric-box">
+                    <h4>1. Sponsor</h4>
+                    <p class="pass">Mapletree</p>
+                </div>
+                <div class="metric-box">
+                    <h4>2. Gearing</h4>
+                    <p class="pass">38.2%</p>
+                </div>
+                <div class="metric-box">
+                    <h4>3. ICR</h4>
+                    <p class="pass">3.5x</p>
+                </div>
+                <div class="metric-box">
+                    <h4>4. Rental Reversion</h4>
+                    <p class="pass">+4.8%</p>
+                </div>
+                <div class="metric-box">
+                    <h4>5. Div Yield</h4>
+                    <p class="pass">6.10%</p>
+                </div>
+            </div>
+            
+            <!-- 6. Outlook Next 1 Year -->
+            <div class="text-section outlook-box">
+                <h4>6. Outlook Next 1 Year: STABLE TO POSITIVE</h4>
+                <p>Global demand for modern warehouse space remains structural, insulating e-commerce distribution centers. While regional currencies create mild headwinds, over 80% of current debt portfolios are hedged into fixed interest rates, protecting net distributions against global market refinancing volatility over the next 12 months.</p>
+            </div>
+            
+            <!-- 7. Analysis and Recommendation -->
+            <div class="text-section rec-box">
+                <h4>7. Analysis & Recommendation: ACQUIRE / ACCUMULATE</h4>
+                <p>An exceptional defensive pick backed by a rock-solid sponsor profile. Capital leverage margins sit perfectly within conservative boundaries, providing significant headroom below statutory debt limits. Positive forward rental metrics combined with robust interest coverage levels support safe dividend stability. Maintain position as a foundational yield driver.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
