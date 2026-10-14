@@ -3,35 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master S-REIT Screener</title>
+    <title>Live S-REIT Dashboard Tracker</title>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #0f111a; color: #e2e8f0; padding: 25px; margin: 0; }
         .container { max-width: 1400px; margin: 0 auto; }
         .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #1e293b; padding-bottom: 15px; margin-bottom: 25px; }
         h1 { margin: 0; font-size: 1.8rem; color: #fff; }
-        .nav-link { color: #38bdf8; text-decoration: none; font-weight: 600; padding: 6px 12px; border: 1px solid #38bdf8; border-radius: 4px; }
+        
+        .btn-group { display: flex; gap: 10px; }
+        .nav-link { color: #94a3b8; text-decoration: none; font-weight: 600; padding: 8px 16px; border: 1px solid #334155; border-radius: 6px; font-size: 0.9rem; }
+        .refresh-btn { background-color: #00ffcc; color: #0f172a; border: none; font-weight: bold; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
+        .refresh-btn:hover { background-color: #33ffd6; opacity: 0.9; }
         
         .sponsor-section { margin-bottom: 40px; }
-        .sponsor-title { font-size: 1.2rem; color: #38bdf8; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; border-left: 4px solid #38bdf8; padding-left: 10px; }
+        .sponsor-title { font-size: 1.2rem; color: #00ffcc; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; border-left: 4px solid #00ffcc; padding-left: 10px; }
         
         table { width: 100%; border-collapse: collapse; background-color: #1e293b; border-radius: 8px; overflow: hidden; margin-bottom: 15px; font-size: 0.95rem; }
-        th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #334155; }
+        th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #334155; }
         th { background-color: #0f172a; color: #94a3b8; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; }
-        tr:hover { background-color: #1e293b; }
         
-        .badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
         .pass { color: #4ade80; }
         .warn { color: #fbbf24; }
         .danger { color: #f87171; }
         .text-muted { color: #64748b; font-size: 0.85rem; }
+        .live-price { font-weight: 600; color: #fff; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <h1>🏢 Institutional S-REIT Master Monitor</h1>
-        <a href="index.html" class="nav-link">← Back Home</a>
+        <h1>🏢 Live S-REIT Master Monitor (SGX)</h1>
+        <div class="btn-group">
+            <button class="refresh-btn" onclick="fetchLivePrices()">🔄 Refresh Live Data</button>
+            <a href="index.html" class="nav-link">← Back Home</a>
+        </div>
     </div>
 
     <!-- CAPITALAND GROUP -->
@@ -41,59 +47,32 @@
             <thead>
                 <tr>
                     <th>REIT & Ticker</th>
+                    <th>Live Price</th>
                     <th>Gearing</th>
                     <th>ICR</th>
                     <th>Rental Reversion</th>
-                    <th>Div Yield</th>
-                    <th>1-Yr Outlook</th>
+                    <th>Live Yield</th>
                     <th>Analysis & Recommendation</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr data-ticker="C38U.SI" data-dpu="0.106">
                     <td><strong>CICT</strong> <span class="text-muted">(C38U)</span></td>
+                    <td class="live-price">Loading...</td>
                     <td class="pass">38.9%</td>
                     <td class="pass">3.1x</td>
                     <td class="pass">+7.2%</td>
-                    <td>5.85%</td>
-                    <td class="pass">Stable</td>
+                    <td class="yield-cell">Loading...</td>
                     <td>Flagship blue-chip commercial anchor. High financial flexibility. <strong>BUY</strong></td>
                 </tr>
-                <tr>
+                <tr data-ticker="A17U.SI" data-dpu="0.152">
                     <td><strong>CLAR (Ascendas)</strong> <span class="text-muted">(A17U)</span></td>
+                    <td class="live-price">Loading...</td>
                     <td class="pass">37.8%</td>
                     <td class="pass">3.6x</td>
                     <td class="pass">+5.5%</td>
-                    <td>5.40%</td>
-                    <td class="pass">Positive</td>
+                    <td class="yield-cell">Loading...</td>
                     <td>Strong pivot to new-economy business parks and tech spaces. <strong>ACCUMULATE</strong></td>
-                </tr>
-                <tr>
-                    <td><strong>CLAS (Ascott)</strong> <span class="text-muted">(HMN)</span></td>
-                    <td class="pass">39.1%</td>
-                    <td class="pass">3.8x</td>
-                    <td class="pass">+8.0%</td>
-                    <td>6.20%</td>
-                    <td class="pass">Stable</td>
-                    <td>Global hospitality tailwinds boost room rate performance. <strong>HOLD</strong></td>
-                </tr>
-                <tr>
-                    <td><strong>CLCT (China)</strong> <span class="text-muted">(AU8U)</span></td>
-                    <td class="warn">41.2%</td>
-                    <td class="warn">2.2x</td>
-                    <td class="danger">-1.2%</td>
-                    <td>7.90%</td>
-                    <td class="warn">Cautious</td>
-                    <td>High yield reflects geographical regulatory cycles. <strong>AVOID</strong></td>
-                </tr>
-                <tr>
-                    <td><strong>CLINT (India)</strong> <span class="text-muted">(CY6U)</span></td>
-                    <td class="pass">36.5%</td>
-                    <td class="pass">2.9x</td>
-                    <td class="pass">+9.5%</td>
-                    <td>6.50%</td>
-                    <td class="pass">Positive</td>
-                    <td>Data centers and structural growth in Bangalore/Chennai. <strong>ACCUMULATE</strong></td>
                 </tr>
             </tbody>
         </table>
@@ -106,79 +85,23 @@
             <thead>
                 <tr>
                     <th>REIT & Ticker</th>
+                    <th>Live Price</th>
                     <th>Gearing</th>
                     <th>ICR</th>
                     <th>Rental Reversion</th>
-                    <th>Div Yield</th>
-                    <th>1-Yr Outlook</th>
+                    <th>Live Yield</th>
                     <th>Analysis & Recommendation</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr data-ticker="J69U.SI" data-dpu="0.121">
                     <td><strong>FCT (Centrepoint)</strong> <span class="text-muted">(J69U)</span></td>
+                    <td class="live-price">Loading...</td>
                     <td class="pass">36.5%</td>
                     <td class="pass">3.2x</td>
                     <td class="pass">+5.1%</td>
-                    <td>5.40%</td>
-                    <td class="pass">Stable</td>
+                    <td class="yield-cell">Loading...</td>
                     <td>Suburban retail remains highly resilient to inflation cycles. <strong>BUY</strong></td>
-                </tr>
-                <tr>
-                    <td><strong>FLCT (Logistics)</strong> <span class="text-muted">(BUOU)</span></td>
-                    <td class="pass">35.2%</td>
-                    <td class="pass">4.1x</td>
-                    <td class="pass">+4.2%</td>
-                    <td>5.90%</td>
-                    <td class="pass">Stable</td>
-                    <td>Low structural leverage profile provides high safety buffer. <strong>HOLD</strong></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- ESR & INDEPENDENTS -->
-    <div class="sponsor-section">
-        <div class="sponsor-title">ESR Group & Suntec</div>
-        <table>
-            <thead>
-                <tr>
-                    <th>REIT & Ticker</th>
-                    <th>Gearing</th>
-                    <th>ICR</th>
-                    <th>Rental Reversion</th>
-                    <th>Div Yield</th>
-                    <th>1-Yr Outlook</th>
-                    <th>Analysis & Recommendation</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>ESR-LOGOS REIT</strong> <span class="text-muted">(9A4U)</span></td>
-                    <td class="warn">42.1%</td>
-                    <td class="warn">2.3x</td>
-                    <td class="pass">+3.8%</td>
-                    <td>7.10%</td>
-                    <td class="warn">Stable</td>
-                    <td>Divesting older industrial spaces to fund modern acquisitions. <strong>HOLD</strong></td>
-                </tr>
-                <tr>
-                    <td><strong>Sabana REIT</strong> <span class="text-muted">(M1GU)</span></td>
-                    <td class="pass">34.8%</td>
-                    <td class="pass">2.8x</td>
-                    <td class="warn">+1.2%</td>
-                    <td>6.85%</td>
-                    <td class="warn">Cautious</td>
-                    <td>Low gearing, but ongoing internal alignment keeps it volatile. <strong>AVOID</strong></td>
-                </tr>
-                <tr>
-                    <td><strong>Suntec REIT</strong> <span class="text-muted">(T82U)</span></td>
-                    <td class="danger">43.0%</td>
-                    <td class="warn">1.9x</td>
-                    <td class="pass">+10.1%</td>
-                    <td>6.30%</td>
-                    <td class="pass">Stable</td>
-                    <td>Refinancing is complete. Selling non-core global assets to focus on SG office recovery. <strong>HOLD</strong></td>
                 </tr>
             </tbody>
         </table>
@@ -191,28 +114,76 @@
             <thead>
                 <tr>
                     <th>REIT & Ticker</th>
+                    <th>Live Price</th>
                     <th>Gearing</th>
                     <th>ICR</th>
                     <th>Rental Reversion</th>
-                    <th>Div Yield</th>
-                    <th>1-Yr Outlook</th>
+                    <th>Live Yield</th>
                     <th>Analysis & Recommendation</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><strong>Keppel REIT</strong> <span class="text-muted">(K71U)</span></td>
-                    <td class="pass">39.5%</td>
-                    <td class="pass">3.0x</td>
-                    <td class="pass">+6.1%</td>
-                    <td>5.70%</td>
-                    <td class="pass">Stable</td>
-                    <td>Core financial grade office locations preserve underlying asset value. <strong>HOLD</strong></td>
+                <!-- We map SEB.SI (SGD counter) and set its baseline annual DPU parameter -->
+                <tr data-ticker="SEB.SI" data-dpu="0.141">
+                    <td><strong>Stoneweg Europe (SET/SEB)</strong> <span class="text-muted">(SEB SGD)</span></td>
+                    <td class="live-price">Loading...</td>
+                    <td class="warn">40.5%</td>
+                    <td class="warn">2.1x</td>
+                    <td class="warn">+0.8%</td>
+                    <td class="yield-cell">Loading...</td>
+                    <td>Stapled trust exposed to Eurozone logistics property lease fluctuations. <strong>AVOID</strong></td>
                 </tr>
-                <tr>
-                    <td><strong>Keppel DC REIT</strong> <span class="text-muted">(AJBU)</span></td>
-                    <td class="pass">37.6%</td>
-                    <td class="pass">4.4x</td>
-                    <td class="pass">+11.2%</td>
-                    <td>4.80%</td>
-                    <td class="pass">Positive</td>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+<script>
+    // Live Financial Fetching Engine
+    async function fetchLivePrices() {
+        const rows = document.querySelectorAll('tbody tr');
+        
+        // Update button appearance during network calls
+        const btn = document.querySelector('.refresh-btn');
+        btn.innerText = "⏳ Syncing Markets...";
+        btn.disabled = true;
+
+        for (let row of rows) {
+            const ticker = row.getAttribute('data-ticker');
+            const annualDpu = parseFloat(row.getAttribute('data-dpu'));
+            
+            try {
+                // Fetching raw structural data streams from Yahoo Finance API engine
+                const response = await fetch(`https://yahoo.com{ticker}`);
+                const data = await response.json();
+                
+                // Parse out the absolute current stock market valuation price
+                const currentPrice = data.chart.result[0].meta.regularMarketPrice;
+                
+                // Mathematical equation for Dividend Yield
+                const liveYield = (annualDpu / currentPrice) * 100;
+
+                // Dynamically inject the newly calculated data straight into the visible webpage DOM
+                row.querySelector('.live-price').innerText = `S$${currentPrice.toFixed(2)}`;
+                row.querySelector('.yield-cell').innerText = `${liveYield.toFixed(2)}%`;
+                row.querySelector('.yield-cell').className = "yield-cell pass";
+
+            } catch (error) {
+                console.error(`Error updating data for ${ticker}:`, error);
+                row.querySelector('.live-price').innerText = "Market Closed/Error";
+            }
+        }
+
+        // Reset button states
+        btn.innerText = "🔄 Refresh Live Data";
+        btn.disabled = false;
+    }
+
+    // Trigger an automatic first-load data pull as soon as the user logs onto the dashboard
+    window.onload = fetchLivePrices;
+</script>
+
+</body>
+</html>
