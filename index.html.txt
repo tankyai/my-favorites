@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorites</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: #2d2d2d;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 300px;
+        }
+        h1 { color: #00ffcc; margin-bottom: 20px; }
+        ul { list-style-type: none; padding: 0; text-align: left; }
+        li { padding: 10px 0; border-bottom: 1px solid #444; font-size: 1.1rem; }
+        strong { color: #00ffcc; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>⭐ My Favorites</h1>
+        <ul>
+            <li>🎬 <strong>Movie:</strong> Inception</li>
+            <li>🍕 <strong>Food:</strong> Pizza</li>
+            <li>💻 <strong>Hobby:</strong> Coding on GitHub</li>
+        </ul>
+    </div>
+
+</body>
+</html>
