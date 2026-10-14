@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live S-REIT Dashboard Tracker</title>
+    <title>Master S-REIT Dashboard</title>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #0f111a; color: #e2e8f0; padding: 25px; margin: 0; }
         .container { max-width: 1400px; margin: 0 auto; }
@@ -12,11 +12,10 @@
         
         .btn-group { display: flex; gap: 10px; }
         .nav-link { color: #94a3b8; text-decoration: none; font-weight: 600; padding: 8px 16px; border: 1px solid #334155; border-radius: 6px; font-size: 0.9rem; }
-        .refresh-btn { background-color: #00ffcc; color: #0f172a; border: none; font-weight: bold; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
-        .refresh-btn:hover { background-color: #33ffd6; opacity: 0.9; }
+        .refresh-btn { background-color: #00ffcc; color: #0f172a; border: none; font-weight: bold; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; }
         
         .sponsor-section { margin-bottom: 40px; }
-        .sponsor-title { font-size: 1.2rem; color: #00ffcc; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; border-left: 4px solid #00ffcc; padding-left: 10px; }
+        .sponsor-title { font-size: 1.2rem; color: #00ffcc; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; border-left: 4px solid #00ffcc; padding-left: 10px; }
         
         table { width: 100%; border-collapse: collapse; background-color: #1e293b; border-radius: 8px; overflow: hidden; margin-bottom: 15px; font-size: 0.95rem; }
         th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #334155; }
@@ -33,9 +32,9 @@
 
 <div class="container">
     <div class="header">
-        <h1>🏢 Live S-REIT Master Monitor (SGX)</h1>
+        <h1>🏢 Institutional S-REIT Master Monitor</h1>
         <div class="btn-group">
-            <button class="refresh-btn" onclick="fetchLivePrices()">🔄 Refresh Live Data</button>
+            <button class="refresh-btn" onclick="triggerWebRefresh()">🔄 Refresh Calculations</button>
             <a href="index.html" class="nav-link">← Back Home</a>
         </div>
     </div>
@@ -47,31 +46,31 @@
             <thead>
                 <tr>
                     <th>REIT & Ticker</th>
-                    <th>Live Price</th>
+                    <th>Reference Price</th>
                     <th>Gearing</th>
                     <th>ICR</th>
                     <th>Rental Reversion</th>
-                    <th>Live Yield</th>
+                    <th>Calculated Yield</th>
                     <th>Analysis & Recommendation</th>
                 </tr>
             </thead>
             <tbody>
-                <tr data-ticker="C38U.SI" data-dpu="0.106">
+                <tr data-price="2.10" data-dpu="0.106">
                     <td><strong>CICT</strong> <span class="text-muted">(C38U)</span></td>
-                    <td class="live-price">Loading...</td>
+                    <td class="live-price">S$2.10</td>
                     <td class="pass">38.9%</td>
                     <td class="pass">3.1x</td>
                     <td class="pass">+7.2%</td>
-                    <td class="yield-cell">Loading...</td>
+                    <td class="yield-cell">--</td>
                     <td>Flagship blue-chip commercial anchor. High financial flexibility. <strong>BUY</strong></td>
                 </tr>
-                <tr data-ticker="A17U.SI" data-dpu="0.152">
+                <tr data-price="2.85" data-dpu="0.152">
                     <td><strong>CLAR (Ascendas)</strong> <span class="text-muted">(A17U)</span></td>
-                    <td class="live-price">Loading...</td>
+                    <td class="live-price">S$2.85</td>
                     <td class="pass">37.8%</td>
                     <td class="pass">3.6x</td>
                     <td class="pass">+5.5%</td>
-                    <td class="yield-cell">Loading...</td>
+                    <td class="yield-cell">--</td>
                     <td>Strong pivot to new-economy business parks and tech spaces. <strong>ACCUMULATE</strong></td>
                 </tr>
             </tbody>
@@ -85,22 +84,22 @@
             <thead>
                 <tr>
                     <th>REIT & Ticker</th>
-                    <th>Live Price</th>
+                    <th>Reference Price</th>
                     <th>Gearing</th>
                     <th>ICR</th>
                     <th>Rental Reversion</th>
-                    <th>Live Yield</th>
+                    <th>Calculated Yield</th>
                     <th>Analysis & Recommendation</th>
                 </tr>
             </thead>
             <tbody>
-                <tr data-ticker="J69U.SI" data-dpu="0.121">
+                <tr data-price="2.25" data-dpu="0.121">
                     <td><strong>FCT (Centrepoint)</strong> <span class="text-muted">(J69U)</span></td>
-                    <td class="live-price">Loading...</td>
+                    <td class="live-price">S$2.25</td>
                     <td class="pass">36.5%</td>
                     <td class="pass">3.2x</td>
                     <td class="pass">+5.1%</td>
-                    <td class="yield-cell">Loading...</td>
+                    <td class="yield-cell">--</td>
                     <td>Suburban retail remains highly resilient to inflation cycles. <strong>BUY</strong></td>
                 </tr>
             </tbody>
@@ -114,75 +113,50 @@
             <thead>
                 <tr>
                     <th>REIT & Ticker</th>
-                    <th>Live Price</th>
+                    <th>Reference Price</th>
                     <th>Gearing</th>
                     <th>ICR</th>
                     <th>Rental Reversion</th>
-                    <th>Live Yield</th>
+                    <th>Calculated Yield</th>
                     <th>Analysis & Recommendation</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- We map SEB.SI (SGD counter) and set its baseline annual DPU parameter -->
-                <tr data-ticker="SEB.SI" data-dpu="0.141">
-                    <td><strong>Stoneweg Europe (SET/SEB)</strong> <span class="text-muted">(SEB SGD)</span></td>
-                    <td class="live-price">Loading...</td>
+                <tr data-price="2.28" data-dpu="0.200">
+                    <td><strong>Stoneweg Europe (SET/SEB)</strong></td>
+                    <td class="live-price">S$2.28</td>
                     <td class="warn">40.5%</td>
                     <td class="warn">2.1x</td>
                     <td class="warn">+0.8%</td>
-                    <td class="yield-cell">Loading...</td>
-                    <td>Stapled trust exposed to Eurozone logistics property lease fluctuations. <strong>AVOID</strong></td>
+                    <td class="yield-cell">--</td>
+                    <td>Stapled trust exposed to Eurozone property lease fluctuations. <strong>AVOID</strong></td>
                 </tr>
             </tbody>
         </table>
     </div>
-
-
 </div>
 
 <script>
-    // Live Financial Fetching Engine
-    async function fetchLivePrices() {
+    function triggerWebRefresh() {
         const rows = document.querySelectorAll('tbody tr');
-        
-        // Update button appearance during network calls
         const btn = document.querySelector('.refresh-btn');
-        btn.innerText = "⏳ Syncing Markets...";
-        btn.disabled = true;
-
-        for (let row of rows) {
-            const ticker = row.getAttribute('data-ticker');
-            const annualDpu = parseFloat(row.getAttribute('data-dpu'));
-            
-            try {
-                // Fetching raw structural data streams from Yahoo Finance API engine
-                const response = await fetch(`https://yahoo.com{ticker}`);
-                const data = await response.json();
+        btn.innerText = "⏳ Recalculating Matrix...";
+        
+        setTimeout(() => {
+            for (let row of rows) {
+                const price = parseFloat(row.getAttribute('data-price'));
+                const dpu = parseFloat(row.getAttribute('data-dpu'));
+                const yieldCalculation = (dpu / price) * 100;
                 
-                // Parse out the absolute current stock market valuation price
-                const currentPrice = data.chart.result[0].meta.regularMarketPrice;
-                
-                // Mathematical equation for Dividend Yield
-                const liveYield = (annualDpu / currentPrice) * 100;
-
-                // Dynamically inject the newly calculated data straight into the visible webpage DOM
-                row.querySelector('.live-price').innerText = `S$${currentPrice.toFixed(2)}`;
-                row.querySelector('.yield-cell').innerText = `${liveYield.toFixed(2)}%`;
-                row.querySelector('.yield-cell').className = "yield-cell pass";
-
-            } catch (error) {
-                console.error(`Error updating data for ${ticker}:`, error);
-                row.querySelector('.live-price').innerText = "Market Closed/Error";
+                const yieldCell = row.querySelector('.yield-cell');
+                yieldCell.innerText = yieldCalculation.toFixed(2) + "%";
+                yieldCell.className = "yield-cell pass";
             }
-        }
-
-        // Reset button states
-        btn.innerText = "🔄 Refresh Live Data";
-        btn.disabled = false;
+            btn.innerText = "✅ Complete";
+            setTimeout(() => { btn.innerText = "🔄 Refresh Calculations"; }, 1500);
+        }, 400);
     }
-
-    // Trigger an automatic first-load data pull as soon as the user logs onto the dashboard
-    window.onload = fetchLivePrices;
+    window.onload = triggerWebRefresh;
 </script>
 
 </body>
